@@ -1,0 +1,33 @@
+.main {
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2aa1dd;
+    padding: 20px;
+
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 8px 8px 4px rgba(0, 0, 0, 0.2);
+        background-color: white;
+    }
+
+    .user-title {
+        padding: 40px;
+    }
+
+    .chat {
+        width: 60vw;
+    }
+}
+
+
+
+
+

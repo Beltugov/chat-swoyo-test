@@ -1,0 +1,13 @@
+<div class="message" [ngClass]="{'right': setSide()}">
+    <h3 class="message-author">
+        {{ message.author }}
+    </h3>
+    <div class="message-text">
+        {{ message.text }}
+    </div>
+    <div class="message-date">
+        Дата отправки: {{message.date.split(",")[0]}}
+        Время отправки: {{message.date.split(",")[1]}}
+    </div>
+</div>
+

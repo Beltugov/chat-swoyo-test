@@ -1,0 +1,5 @@
+<div class="login">
+    <h2>Введите свое имя:</h2>
+    <input type="text" [(ngModel)]="user" (keydown)="login($event)">
+    <button (click)="login()">Войти под этим именем?</button>
+</div>
