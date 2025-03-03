@@ -7,22 +7,28 @@ import {LocalTypes} from '../interfaces/local.interface';
 @Injectable()
 export class ChatService {
     public messages = new Subject<IMessage[]>();
+    private bc = new BroadcastChannel("chat_channel");
 
     constructor(private authService: AuthService) {
-
+        this.bc.onmessage = (event) => {
+            this.updateMessages([...this.getMessages(), event.data]);
+        };
     }
 
-    sendMessage(message: IMessage["text"]) {
+    sendMessage(text: IMessage["text"]) {
         const user = this.authService.getUser();
         if (!user) return;
 
-        const updatedChat: IMessage[] = [...this.getMessages(), {
+        const message = {
             author: user,
-            text: message,
+            text: text,
             date: new Date().toLocaleString("ru")
-        }]
+        }
+
+        const updatedChat: IMessage[] = [...this.getMessages(), message]
 
         localStorage.setItem(LocalTypes.LOCAL_MESSAGES, JSON.stringify(updatedChat))
+        this.bc.postMessage(message)
 
         this.updateMessages(this.getMessages());
     }
